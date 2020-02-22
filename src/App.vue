@@ -1,6 +1,5 @@
 <template lang="html">
   <div>
-    <h1>Ghibli</h1>
     <div class="main-container">
       <films-list :films='films'></films-list>
       <film-detail :film='selectedFilm'></film-detail>
@@ -38,9 +37,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-/* main {
-  background: url("../public/images/bg.png")
-} */
 
 </style>

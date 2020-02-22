@@ -1,8 +1,11 @@
 <template lang="html">
+<div>
+</br>
   <select id="films" v-if="films" v-model ="selectedFilm" v-on:change = "handleSelect">
     <option disabled value="">Select a film</option>
         <option v-for="(film, index) in films" :value="film" :key="index">{{ film.title }}</option>
       </select>
+    </div>
 </template>
 
 <script>
@@ -29,4 +32,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#films {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 </style>
