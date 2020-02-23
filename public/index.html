@@ -8,25 +8,48 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link rel="stylesheet" href="style.css">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <img class="center" src = "./images/logo1.png" alt ="logo" width="500" height ="200"></img>
-  </head>
-  <body>
-    <!-- <div v-if="film" id="filmDetail">
-          <div id="detailWrapper">
-            <h2>Title</h2>
-            <div id="flexWrapper">
-              <div id="left">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1ibY91uPIqMCrVjQo2TkgBgtR9FCf_ZYovIzdNYTw1RM/edit#gid=0');
+    query.send(handleQueryResponse);
+  }
+
+  function handleQueryResponse(response) {
+    let data = response.getDataTable();
+    let chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+    let options = {'title':'Studio Ghibli RT Film Scores (%)',
+    'height':350,
+    'chartArea': {width: '50%'}
+  };
+  chart.draw(data, options);
+}
+</script>
+<img class="center" src = "./images/logo1.png" alt ="logo" width="500" height ="200"></img>
+</head>
+<body>
+
+  <!-- <div v-if="film" id="filmDetail">
+  <div id="detailWrapper">
+  <h2>Title</h2>
+  <div id="flexWrapper">
+  <div id="left">
   <p>Hello</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+</div>
+</div>
+</div>
+</div> -->
+<noscript>
+  <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<div id="chart_div" style="border:1px solid green"></div>
+<!-- Chart goes here hopefully? -->
+</body>
 </div>
 </html>
 <style>
@@ -35,7 +58,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-  html {
-    background-image: url("../public/images/bg.png")
-  }
+html {
+  background-image: url("../public/images/bg.png")
+}
 </style>

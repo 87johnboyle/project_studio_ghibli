@@ -2,7 +2,7 @@
 <div>
 </br>
   <select id="films" v-if="films" v-model ="selectedFilm" v-on:change = "handleSelect">
-    <option disabled value="">Select a film</option>
+    <option disabled value="Select a Film">Select a film</option>
         <option v-for="(film, index) in films" :value="film" :key="index">{{ film.title }}</option>
       </select>
     </div>

@@ -7,6 +7,7 @@
               <p><span><h3>Description</h3></span> {{film.description}}</p>
               <p><span><h3>Director</h3></span> {{film.director}}</p>
               <p><span><h3>Release Date</h3></span>{{film.release_date}}</p>
+              <p><span v-bind:class= "film.rt_score < 50 ? 'red' : 'green'"><h3>RT Score</h3></span><span>{{ film.rt_score }}%</span></p>
             </div>
             <template v-if="film.title === 'Castle in the Sky'">
     <img src="https://images.alphacoders.com/828/thumb-1920-828255.png">
@@ -44,9 +45,6 @@
   <template v-if="film.title === 'The Cat Returns'">
     <img src="https://s1.thcdn.com/productimg/1600/1600/11655841-9754546298583822.jpg">
   </template>
-  <!-- <template v-if='film.id === "cd3d059c-09f4-4ff3-8d63-bc765a5184fa"'>
-    <img src="https://www.goog6_c1081.0021.jpg&imgrefurl=http%3A%2F%2Fwww.ifccenter.com%2Ffilms%2Fhowls-moving-castle%2F&docid=hXrWW_t0hSUscM&tbnid=XEPERK_yhbWzQM%3A&vet=10ahUKEwiN8rni5dTgAhV1unEKHWlpDfQQMwhCKAUwBQ..i&w=2218&h=1200&bih=710&biw=1386&q=Howl%27s%20Moving%20Castle&ved=0ahUKEwiN8rni5dTgAhV1unEKHWlpDfQQMwhCKAUwBQ&iact=mrc&uact=8"> -->
-  <!-- </template> -->
   <template v-if="film.title === 'Tales from Earthsea'">
     <img src="https://filmschoolrejects.com/wp-content/uploads/2018/05/tales-from-earthsea.png">
   </template>
@@ -74,7 +72,12 @@
 <template v-if="film.title === `Howl's Moving Castle`">
   <img src="https://i1.wp.com/thespool.net/wp-content/uploads/2019/04/howl-2.jpg?resize=1024%2C576&ssl=1">
 </template>
-            <!-- <div v-show="readMore"> -->
+
+<!-- <button v-on:click="moreInfo()">More Info</button> -->
+
+<!-- <div id="hide">
+<p><span><h3>People</h3></span> {{people.name}}</p>
+</div> -->
           </div>
         </div>
       </div>
@@ -83,7 +86,23 @@
 <script>
 export default {
   name: "film-detail",
-  props: ['film']
+  props: ['film'],
+
+methods:{
+  mounted(){
+  fetch('https://ghibliapi.herokuapp.com/people')
+  .then(res => res.json())
+  .then(people => this.people = people)
+},
+  moreInfo() {
+  let x = document.getElementById("hide");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+}
 }
 </script>
 
@@ -123,7 +142,11 @@ img{
        display: block;
    }
 
-#details {
+.red{
+  color:red;
+}
+.green {
+  color:green;
 }
 
 </style>
