@@ -1,4 +1,4 @@
-# ghibli
+# Ghibli app.
 
 ## Project setup
 ```
